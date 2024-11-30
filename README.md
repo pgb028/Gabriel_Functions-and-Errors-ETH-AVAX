@@ -24,7 +24,59 @@ To compile the code, click on the "Solidity Compiler" tab in the left-hand sideb
 
 After compilation, the contract can be deployed by clicking the "Deploy & Run Transactions" tab in the left-hand sidebar. Select the "ErrorHandler" contract from the dropdown menu, and then click on the "Deploy" button.
 
-Once the contract is deployed, click on the "ErrorHandler" contract first on the left-hand sidebar. You can interact with the program by setting a value as the owner, by passing two numerical arguments to the assertExample() function to see how it works, and by passing a value to the revertExample() function as well.
+Code:
+
+// SPDX-License-Identifier: MIT
+//Gabriel Paul Andre A.
+pragma solidity ^0.8.0;
+
+contract ArtGallery {
+    address public owner;
+    uint256 public artworkCount;
+
+    constructor() {
+        owner = msg.sender;   
+        artworkCount = 0;      
+    }
+
+  
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Only the owner can perform this action");
+        _;
+    }
+
+    function addArtwork(uint256 _artworkAmount) public onlyOwner {
+        require(_artworkAmount > 0, "Amount must be greater than 0");
+        artworkCount += _artworkAmount;
+
+        assert(artworkCount >= _artworkAmount); 
+    }
+
+    function removeArtwork(uint256 _artworkAmount) public onlyOwner {
+        require(_artworkAmount > 0, "Amount must be greater than 0");
+        require(artworkCount >= _artworkAmount, "Not enough artworks to remove");
+
+        artworkCount -= _artworkAmount;
+
+
+        assert(artworkCount <= artworkCount + _artworkAmount);  
+    }
+
+    function getArtworkCount() public view returns (uint256) {
+        return artworkCount;
+    }
+
+   
+    function borrowArtworks(uint256 _borrowAmount) public onlyOwner {
+        if (_borrowAmount > 100) {
+            revert("Reached limit of borrowed artworks today.");  
+        }
+
+        artworkCount += _borrowAmount; 
+    }
+}
+
+
 
 # Authors
 
