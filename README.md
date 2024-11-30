@@ -76,7 +76,11 @@ contract ArtGallery {
     }
 }
 
+The ArtGallery contract is a simple yet functional Solidity program designed to manage an inventory of artworks. It incorporates three essential Solidity error-handling functions—require(), assert(), and revert()—to ensure robustness and maintain data integrity. The contract begins by assigning ownership to the deployer using the constructor. The onlyOwner modifier restricts sensitive operations to the contract owner, ensuring unauthorized users cannot manipulate the artwork inventory.
 
+The addArtwork and removeArtwork functions are at the core of this contract. The require() function validates inputs, such as ensuring artwork amounts are positive and that there is enough inventory for removal. The assert() function provides additional safeguards to verify that critical invariants, like the updated artwork count, remain logically consistent. This two-tiered approach—require() for input validation and assert() for state integrity—makes the contract robust against potential misuse.
+
+Additionally, the borrowArtworks function introduces an error-handling example using the revert() function. This explicitly halts execution if the borrowing limit exceeds 100 artworks, demonstrating its use in scenarios where input conditions require custom error messages. Together, these functions illustrate Solidity's comprehensive error-handling mechanisms, making this contract a great learning example for secure and efficient smart contract design.
 
 # Authors
 
