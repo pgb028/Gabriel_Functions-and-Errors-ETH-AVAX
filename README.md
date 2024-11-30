@@ -4,14 +4,13 @@ This Solidity program focuses on error handling and the various functions utiliz
 
 We will tackle 3 functions given on the project
 
-# Description
+This program consists of 3 functions for error handling in Solidity:
 
-This program consists of 3 functions
- 
-**Require()** - 
-**Assert()** - 
-**Revert()** - 
-# Getting Started
+Require() - Used to validate inputs and conditions before executing further logic. If the condition is not met, the function stops execution and reverts any changes. This ensures that only valid data is processed (e.g., verifying that the artwork amount is greater than zero or that the caller is the owner).
+
+Assert() - Used to check for conditions that should never fail under normal circumstances, ensuring internal invariants of the contract. If an assert statement fails, it typically indicates a critical bug. For example, assert() is used here to confirm that the artwork count remains logically consistent after addition or subtraction.
+
+Revert() - Provides a way to handle specific error scenarios where execution must stop. It is useful for implementing custom error messages and halting the contract when specific conditions are met, such as the borrowing limit in the borrowArtworks function.
 
 **Executing the program**
 
